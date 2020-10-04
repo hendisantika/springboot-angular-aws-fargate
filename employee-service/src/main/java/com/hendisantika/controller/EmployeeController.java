@@ -3,11 +3,15 @@ package com.hendisantika.controller;
 import com.hendisantika.model.Employee;
 import com.hendisantika.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -31,5 +35,8 @@ public class EmployeeController {
         return employeeRepository.save(employee);
     }
 
-
+    @GetMapping("/employees")
+    public ResponseEntity<List<Employee>> getAllEmployees() {
+        return ResponseEntity.ok(employeeRepository.findAll());
+    }
 }
